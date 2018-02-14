@@ -1,0 +1,25 @@
+<ion-header >
+  <ion-navbar color="secondary">
+    <ion-title>
+      Visitantes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  >
+ 
+    <ion-list >
+
+        <ion-list-header center text-center>
+            Lista de acceso
+          </ion-list-header>
+     
+        <button  large ion-item  *ngFor="let item of lista" (click)="openModal(item.titulo)">
+          <ion-icon name="{{item.icono}}" item-start [ngStyle] = "{'color' : item.color}"></ion-icon>
+          {{item.titulo}}
+        </button>
+                
+      </ion-list>
+      
+  
+</ion-content>
