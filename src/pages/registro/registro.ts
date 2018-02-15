@@ -20,8 +20,9 @@ export class RegistroPage {
 
   async registrar(user : User){
     try{
-    const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).then(()=>{
-      this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)}).then(()=>{
+      user.url = "https://firebasestorage.googleapis.com/v0/b/casasegura-e1196.appspot.com/o/usuarios%2Ffotos_perfil%2Fperfil.png?alt=media&token=68ec1e1e-9284-4e3f-8da8-fe2082dfa60b";
+    const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.correo, user.contraseña).then(()=>{
+      this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contraseña)}).then(()=>{
         this.afAuth.authState.subscribe(auth => { 
           this.afDatabase.database.ref('usuarios').child(auth.uid).set(user).then(()=>{
             this.navCtrl.setRoot(TabsPage)});

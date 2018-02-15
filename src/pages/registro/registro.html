@@ -14,76 +14,103 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <form>
-      
-      <ion-item>
-        
-        <ion-label floating>Nombre de usuario</ion-label>
-        <ion-input
-          [(ngModel)]="user.username"
-          name="username"
-          type="text"
-          autocapitalize="off"
-          required
-        >
-        </ion-input>
-      </ion-item>
+  ion-list>
+        <form>
+          <ion-item>
+            <ion-label floating>Nombre</ion-label>
+            <ion-input
+              [(ngModel)]="user.nombre"
+              name="nombre"
+              type="text"
+              
+            >
+            </ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label floating>Apellido</ion-label>
+            <ion-input
+              [(ngModel)]="user.apellido"
+              name="apellido"
+              type="text"
+              
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label floating>Correo</ion-label>
+              <ion-input
+                [(ngModel)]="user.correo"
+                name="correo"
+                type="email"
+                
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Contraseña</ion-label>
+              <ion-input
+                [(ngModel)]="user.contraseña"
+                name="password"
+                type="password"
+                
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>telefono</ion-label>
+              <ion-input
+                [(ngModel)]="user.telefono"
+                name="telefono"
+                type="text"
+                
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>calle</ion-label>
+                <ion-input
+                  [(ngModel)]="user.calle"
+                  name="calle"
+                  type="text"
+                  
+                >
+                </ion-input>
+              </ion-item>
 
-      <ion-item>
-        <ion-label floating>Nombre</ion-label>
-        <ion-input
-          [(ngModel)]="user.name"
-          name="name"
-          type="text"
-          required
-        >
-        </ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>Apellido</ion-label>
-          <ion-input
-            [(ngModel)]="user.apellido"
-            name="apellido"
-            type="text"
-            required
-          >
-          </ion-input>
-        </ion-item>
-      <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input
-          [(ngModel)]="user.email"
-          name="email"
-          type="text"
-          autocapitalize="off"
-          required
-        >
-        </ion-input>
-    </ion-item>
+              <ion-item>
+                  <ion-label floating>numero</ion-label>
+                  <ion-input
+                    [(ngModel)]="user.numero"
+                    name="numero"
+                    type="number"
+                    
+                  >
+                  </ion-input>
+                </ion-item>
 
-    <ion-item>
-      <ion-label floating>Contraseña</ion-label>
-      <ion-input
-        [(ngModel)]="user.password"
-        name="password"
-        type="password"
-        required
-      >
-      </ion-input>
-    </ion-item>
-
-    <div padding>
-      <button
-          ion-button 
-          (click)="registrar(user)"
-          type="submit"
-          color="primary"
-          block
-      >
-        Aceptar
-      </button>
-      </div>
-    </form>
-  </ion-list>
+                <ion-item>
+                    <ion-label floating>colonia</ion-label>
+                    <ion-input
+                      [(ngModel)]="user.colonia"
+                      name="colonia"
+                      type="text"
+                      
+                    >
+                    </ion-input>
+                  </ion-item>
+          
+          <div padding>
+            <button
+                ion-button 
+                (click)="registrar(user)"
+                type="submit"
+                color="primary"
+                block
+            >
+              Aceptar
+            </button>
+          </div>
+        </form>
+      </ion-list>
 </ion-content>

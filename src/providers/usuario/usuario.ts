@@ -45,13 +45,13 @@ export class UsuarioProvider {
       sourceType : this.camara.PictureSourceType.CAMERA,
       allowEdit : true,
       encodingType: this.camara.EncodingType.JPEG,
-      targetWidth: 500,
-      targetHeight: 500,
+      targetWidth: 720,
+      targetHeight: 1080,
       saveToPhotoAlbum: true
     }).then(foto => {
             let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);
             fotoref.putString(foto, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
-              firebase.database().ref('usuario').set(foto_guardad.downloadURL);
+              firebase.database().ref('usuarios/'+this.Uid).set({url: foto_guardad.downloadURL});
             });
     }, error => {
       // Log an error to the console if something goes wrong.
@@ -67,13 +67,13 @@ export class UsuarioProvider {
       sourceType : this.camara.PictureSourceType.PHOTOLIBRARY,
       allowEdit : true,
       encodingType: this.camara.EncodingType.JPEG,
-      targetWidth: 500,
-      targetHeight: 500,
+      targetWidth: 720,
+      targetHeight: 1080,
       saveToPhotoAlbum: true
     }).then(foto => {
             let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);
             fotoref.putString(foto, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
-              firebase.database().ref('usuario').set(foto_guardad.downloadURL);
+              firebase.database().ref('usuarios/'+this.Uid).set({url: foto_guardad.downloadURL});
             });
     }, error => {
       // Log an error to the console if something goes wrong.

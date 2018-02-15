@@ -1,7 +1,12 @@
 export interface User{
-    email: string;
-    password: string;
-    username: string;
-    name: string;
+    nombre: string;
     apellido: string;
+    correo: string;
+    contraseña: string;
+    telefono: string;
+    calle: string
+    numero: number;
+    colonia: string;
+    url: string;
+    
 }
