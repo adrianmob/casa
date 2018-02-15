@@ -3,11 +3,6 @@
     <ion-title>
       Perfil
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="ir_detalle_usuario()">
-        <ion-icon color="primary" name="create"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +11,7 @@
 
     
   
-    <img src="../assets/imgs/perfil.png" width="150px" height="150px">
+    <img (click)="opcion()" src="../assets/imgs/perfil.png" width="150px" height="150px">
 
     <ion-card>
   
@@ -58,4 +53,17 @@
   </ion-col>
     
 </ion-row>
+
+<ion-fab *ngIf="show" left bottom>
+  <button (click)="hide_opcion()" ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+  <ion-fab-list side="top">
+    <button ion-fab color="A400" (click)="tomarFoto()"><ion-icon name="camera"></ion-icon></button>
+    <button ion-fab color="A700" (click)="tomarImagen()"><ion-icon name="image"></ion-icon></button>
+  </ion-fab-list>
+</ion-fab>
+
+
+<ion-fab right bottom>
+    <button ion-fab color="secondary" (click)="ir_detalle_usuario()"><ion-icon name="create"></ion-icon></button>
+    </ion-fab>
 </ion-content>

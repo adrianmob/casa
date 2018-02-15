@@ -17,6 +17,8 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 })
 export class DetalleUsuarioPage {
 
+  
+
   public usuario = {};
 
   constructor(public navCtrl: NavController, public usua: UsuarioProvider) {
@@ -29,7 +31,7 @@ export class DetalleUsuarioPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetalleUsuarioPage');
+    
   }
 
   edit_usuario(){
