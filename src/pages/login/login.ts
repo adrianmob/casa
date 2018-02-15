@@ -33,7 +33,7 @@ export class LoginPage {
 
  async login(user : User){
   try { 
-  const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+  const result = await this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contraseña);
   if(result){
     console.log(result);
     this.navCtrl.push('RegistroPage');
