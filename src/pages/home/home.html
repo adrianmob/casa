@@ -1,12 +1,27 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Inicio</ion-title>
-  </ion-navbar>
+<ion-header >
+
+    <ion-navbar color="secondary">
+      <ion-title>Inicio</ion-title>
+    </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
+
+    <ion-card #elemento>
+        <img src="https://e.an.amtv.pe/will-smith-parte-jurado-este-importante-festival-internacional-624x352-363452.jpg"/>
+        <ion-card-content>
+          <ion-card-title>
+            Nine Inch Nails Live
+            </ion-card-title>
+          <p>
+            The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.
+          </p>
+        </ion-card-content>
+      </ion-card>
+      
+          <button ion-button (click)="animalo()">click</button>
+    
   
-  <button ion-button (click)="tomarfoto()">
-    Prueba
-  </button>
 </ion-content>

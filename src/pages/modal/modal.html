@@ -6,15 +6,8 @@
 -->
 <ion-header>
     <ion-toolbar>
-
-   
-    <ion-buttons end>
-            <button ion-button icon-only (click)="agregar()">
-                <ion-icon name="add"></ion-icon>
-              </button>
-          </ion-buttons>
-          <ion-title>modal</ion-title>
-          <ion-buttons start>
+          <ion-title>{{titulo}}</ion-title>
+          <ion-buttons end>
               <button ion-button icon-only (click)="close()">
               <ion-icon name="close"></ion-icon>
             </button>
@@ -27,11 +20,16 @@
 
 <ion-content padding>
       <ion-card *ngFor="let item of prueba">
-          <ngx-qrcode qrc-element-type="img" qrc-value=" {{ item.key }}" ></ngx-qrcode>
+          <ngx-qrcode qrc-element-type="img" qrc-value='{clave: "{{ item.key }}" , nombre: "{{ item.name }}" ,tipo: "{{ item.tipo }}" }'></ngx-qrcode>
           <ion-card-content>
             <ion-card-title>
                 {{ item.name }}
               </ion-card-title>
           </ion-card-content>
         </ion-card>
+
+        <ion-fab right bottom>
+            <button ion-fab color="secondary" (click)="agregar()"><ion-icon name="create"></ion-icon></button>
+            </ion-fab>
+        
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 
@@ -21,7 +21,7 @@ export class DetalleUsuarioPage {
 
   public usuario = {};
 
-  constructor(public navCtrl: NavController, public usua: UsuarioProvider) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public usua: UsuarioProvider) {
   
     this.usua.get_usuarios().subscribe(data =>{
       this.usuario = data;
@@ -37,6 +37,11 @@ export class DetalleUsuarioPage {
   edit_usuario(){
     this.usua.editar_usuarios(this.usuario);
     this.navCtrl.pop();
+  }
+
+  close(){
+    this.viewCtrl.dismiss();
+
   }
 
 }

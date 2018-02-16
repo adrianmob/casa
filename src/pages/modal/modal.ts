@@ -85,7 +85,8 @@ export class ModalPage {
 
   agregar(){
     let modal = this.modalCtrl.create(AgregarPage,{
-      tipo: this.tipo
+      tipo: this.tipo,
+      titulo: this.titulo
     });
     modal.present();
 

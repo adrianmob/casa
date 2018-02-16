@@ -1,9 +1,10 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Perfil
-    </ion-title>
+
+<ion-header >
+
+  <ion-navbar color="secondary">
+    <ion-title>Perfil</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
@@ -11,32 +12,32 @@
 
     
   
-    <img (click)="opcion()" src="{{ usuario.url }}" width="150px" height="150px">
+    <img (click)="opcion()" src="{{ usuario.url }}" width="100px" height="100px">
 
     <ion-card>
   
     <ion-row>
       <ion-col col-12>
         <button ion-button icon-left clear small>
-          <ion-icon name="person"></ion-icon>
+          <ion-icon  class ="icono" name="person"></ion-icon>
           <div>{{ usuario.nombre}} {{ usuario.apellido }}</div>
         </button>
       </ion-col>
       <ion-col col-12>
         <button ion-button icon-left clear small>
-          <ion-icon name="mail"></ion-icon>
+          <ion-icon class ="icono" name="mail"></ion-icon>
           <div>{{ usuario.correo }}</div>
         </button>
       </ion-col>
-      <ion-col col-12>
+      <ion-col col-12 >
         <button ion-button icon-left clear small>
-          <ion-icon name="call"></ion-icon>
+          <ion-icon class ="icono" name="call"></ion-icon>
           <div>{{ usuario.telefono }}</div>
         </button>
       </ion-col>
       <ion-col col-12>
         <button ion-button icon-left clear small>
-          <ion-icon name="home"></ion-icon>
+          <ion-icon class ="icono" name="home"></ion-icon>
           <div>{{ usuario.calle }} {{ usuario.numero }} {{usuario.colonia }}</div>
         </button>
       </ion-col>
@@ -55,7 +56,7 @@
 </ion-row>
 
 <ion-fab *ngIf="show" left bottom>
-  <button (click)="hide_opcion()" ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+  <button #myElement (click)="hide_opcion()" ion-fab color="secondary"><ion-icon name="attach"></ion-icon></button>
   <ion-fab-list side="top">
     <button ion-fab color="A400" (click)="tomarFoto()"><ion-icon name="camera"></ion-icon></button>
     <button ion-fab color="A700" (click)="tomarImagen()"><ion-icon name="image"></ion-icon></button>

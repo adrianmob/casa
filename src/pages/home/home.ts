@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import firebase from 'firebase';
+import { AnimationBuilder, AnimationService } from 'css-animator';
 
 @Component({
   selector: 'page-home',
@@ -9,13 +10,22 @@ import firebase from 'firebase';
 })
 export class HomePage {
 
+  private animator: AnimationBuilder;
+  @ViewChild('elemento') elemento;
 
-  constructor( public navCtrl: NavController, private camara : Camera) {
+
+
+  constructor( public navCtrl: NavController, animacion : AnimationService, private camara : Camera) {
+    this.animator = animacion.builder();
 
   }
 
   ionViewWillLoad(){
     
+  }
+
+  animalo(){
+    this.animator.setType('flipInX').show(this.elemento.nativeElement);
   }
 
   tomarfoto(){

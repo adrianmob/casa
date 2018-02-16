@@ -4,62 +4,61 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding>
 
-    <ion-list>
-        <form padding>
-          <ion-item>
-            <ion-label floating>Email</ion-label>
-            <ion-input
-              [(ngModel)]="user.correo"
-              name="email"
-              type="text"
-              autocapitalize="off"
-              required
-            >
-            </ion-input>
-          </ion-item>
+<ion-content class="back">
+
+  <ion-card class="card">
+
+    <ion-card-header>
+      Entrar
+    </ion-card-header> 
+    <ion-card-content>
     
-          <ion-item>
-            <ion-label floating>Contraseña</ion-label>
-            <ion-input
-              [(ngModel)]="user.contrasena"
-              name="password"
-              type="password"
-              required
-            >
-            </ion-input>
-          </ion-item>
-          <div padding>
-            <button
-                ion-button 
-                (click)="login(user)"
-                type="submit"
-                color="primary"
-                block
-            >
-              Iniciar sesión
-            </button>
-    
-            <button
-              ion-button 
-              (click)="signin()"
-              type="submit"
-              color="secondary"
-              block
-            >
-              Crear cuenta
-            </button>
-          </div>
-        </form>
-      </ion-list>
-    </ion-content>
+    <ion-grid>
+    <ion-row>
+      <ion-col class="columna" col-12>
+
+        <ion-item>
+        <ion-input class="campo" [(ngModel)]="user.correo" text.center placeholder="Correo" name="email" type="text" autocapitalize="off" required>
+        </ion-input>
+      </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col class="columna" col-12>
+
+        <ion-item>
+
+        <ion-input class="campo" [(ngModel)]="user.contrasena" placeholder="Contraseña" name="password" type="password" required>
+        </ion-input>
+      </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+
+        <button class="boton" ion-button (click)="login(user)" type="submit" color="primary" block>
+          Iniciar sesión
+        </button>
+      </ion-col>
+
+      <ion-col col-6>
+        <button class="boton" ion-button (click)="signin()" type="submit" color="secondary" block>
+          Crear cuenta
+        </button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-card-content>
+</ion-card>
+</ion-content>

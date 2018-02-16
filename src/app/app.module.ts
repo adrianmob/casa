@@ -20,7 +20,7 @@ import { ModalPage } from '../pages/modal/modal';
 import { AgregarPage } from '../pages/agregar/agregar';
 import { DetalleUsuarioPage } from '../pages/detalle-usuario/detalle-usuario';
 import { DetalleReportePage } from '../pages/detalle-reporte/detalle-reporte';
-import { LoginPage } from '../pages//login/login'
+import { LoginPage } from '../pages/login/login'
 
 
 
@@ -29,6 +29,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { Camera } from '@ionic-native/camera';
+import { AnimationService, AnimatesDirective } from 'css-animator';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAja20tnMsPmKsqnIAYE8EC9itQhDZH340",
@@ -54,7 +55,9 @@ export const firebaseConfig = {
     AgregarPage,
     DetalleUsuarioPage,
     DetalleReportePage,
-    LoginPage
+    LoginPage,
+    AnimatesDirective
+
   ],
   imports: [
     BrowserModule,
@@ -88,6 +91,7 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     UsuarioProvider,
+    AnimationService,
     Camera
   ]
 })

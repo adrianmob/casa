@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, LoadingController, ModalController, Modal } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DetalleUsuarioPage } from '../detalle-usuario/detalle-usuario';
@@ -17,8 +17,9 @@ export class UsuariosPage {
 
 
   constructor(public navCtrl: NavController, public usua: UsuarioProvider, private afAuth: AngularFireAuth,
-              public loadctrl: LoadingController) {
-
+              public loadctrl: LoadingController,
+              public modal: ModalController) {
+  
       let loader = this.loadctrl.create({
       content: "Espere porfavor...",
        });
@@ -35,7 +36,8 @@ export class UsuariosPage {
     }
 
     ir_detalle_usuario(){
-      this.navCtrl.push(DetalleUsuarioPage);  
+      let modal = this.modal.create(DetalleUsuarioPage);
+      modal.present();
 
      }
 

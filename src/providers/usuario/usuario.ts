@@ -51,7 +51,7 @@ export class UsuarioProvider {
     }).then(foto => {
             let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);
             fotoref.putString(foto, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
-              firebase.database().ref('usuarios/'+this.Uid).set({url: foto_guardad.downloadURL});
+              firebase.database().ref('usuarios/'+this.Uid).update({url: foto_guardad.downloadURL});
             });
     }, error => {
       // Log an error to the console if something goes wrong.
@@ -73,7 +73,7 @@ export class UsuarioProvider {
     }).then(foto => {
             let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);
             fotoref.putString(foto, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
-              firebase.database().ref('usuarios/'+this.Uid).set({url: foto_guardad.downloadURL});
+              firebase.database().ref('usuarios/'+this.Uid+'url').set(foto_guardad.downloadURL);
             });
     }, error => {
       // Log an error to the console if something goes wrong.
