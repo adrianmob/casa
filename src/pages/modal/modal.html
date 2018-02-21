@@ -6,13 +6,12 @@
 -->
 <ion-header>
     <ion-toolbar>
-          <ion-title>{{titulo}}</ion-title>
+          <ion-title text-center>{{titulo}}</ion-title>
           <ion-buttons end>
-              <button ion-button icon-only (click)="close()">
+              <button  ion-button icon-only (click)="close()">
               <ion-icon name="close"></ion-icon>
             </button>
     </ion-buttons>
-        
         
   </ion-toolbar>
 </ion-header>
@@ -20,9 +19,10 @@
 
 <ion-content padding>
       <ion-card *ngFor="let item of prueba">
-          <ngx-qrcode qrc-element-type="img" qrc-value='{clave: "{{ item.key }}" , nombre: "{{ item.name }}" ,tipo: "{{ item.tipo }}" }'></ngx-qrcode>
+          <ngx-qrcode qrc-element-type="img" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
           <ion-card-content>
-            <ion-card-title>
+            <ion-card-title class="card">
+                <ion-icon class="icono" name="person"></ion-icon>
                 {{ item.name }}
               </ion-card-title>
           </ion-card-content>

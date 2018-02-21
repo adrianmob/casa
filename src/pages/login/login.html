@@ -9,7 +9,11 @@
 
 <ion-content class="back">
 
+  
+
   <ion-card class="card">
+
+        <img src="../../assets/imgs/axesslogo.png" alt="">
 
     <ion-card-header>
       Entrar
@@ -21,6 +25,7 @@
       <ion-col class="columna" col-12>
 
         <ion-item>
+        <ion-icon name="contact" item-left></ion-icon>
         <ion-input class="campo" [(ngModel)]="user.correo" text.center placeholder="Correo" name="email" type="text" autocapitalize="off" required>
         </ion-input>
       </ion-item>
@@ -33,6 +38,7 @@
 
         <ion-item>
 
+        <ion-icon name="key" item-left></ion-icon>
         <ion-input class="campo" [(ngModel)]="user.contrasena" placeholder="Contraseña" name="password" type="password" required>
         </ion-input>
       </ion-item>

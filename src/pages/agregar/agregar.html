@@ -21,15 +21,35 @@
 
 
 <ion-content padding>
-    <ion-list>
 
-        <ion-item>
-          <ion-label floating>Nombre completo</ion-label>
-          <ion-input [(ngModel)] ="agregar.name" name="name" type="text" required></ion-input>
-        </ion-item>
-      </ion-list>
+  <ion-card>
+
+    <form>
+
+
+  <ion-grid>
+
+      <ion-row>
+
+        <ion-col col-12>
+        
+          <ion-item>
+            <ion-label stacked>Nombre completo</ion-label>
+            <ion-input [(ngModel)] ="agregar.name" name="name" type="text" required></ion-input>
+          </ion-item>
+
+        </ion-col>
+      
+        </ion-row>
+
+      </ion-grid>
+
+
 
       <div padding>
-          <button ion-button (click) = "agregar_visitante()" >Aceptar</button>
+          <button disabled block ion-button (click) = "agregar_visitante()" >Aceptar</button>
         </div>
+      </form>
+
+    </ion-card>
 </ion-content>

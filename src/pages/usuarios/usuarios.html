@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-  
 
+    <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
     
   
-    <img (click)="opcion()" src="{{ usuario.url }}" width="100px" height="100px">
+    <img class = "perfil" (click)="opcion()" src="{{ usuario.url }}" width="100px" height="100px">
 
     <ion-card>
   
@@ -47,7 +47,7 @@
   </ion-card>
   
 <ion-row>
-  <ion-col center text-center>
+  <ion-col text-center>
     <button ion-button (click)="cerrarSesion()">
       Cerrar Sesión
     </button>

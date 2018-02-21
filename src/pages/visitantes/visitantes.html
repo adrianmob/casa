@@ -7,13 +7,14 @@
 
 </ion-header> 
 
-<ion-content  >
- 
-    <ion-list >
+<ion-content padding>
 
-        <ion-list-header center text-center>
-            Lista de acceso
-          </ion-list-header>
+    <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
+
+ 
+    <ion-list inset no-lines>
+
+        <ion-list-header>  Lista de acceso </ion-list-header>
      
         <button  large ion-item  *ngFor="let item of lista" (click)="openModal(item.titulo)">
           <ion-icon name="{{item.icono}}" item-start [ngStyle] = "{'color' : item.color}"></ion-icon>
