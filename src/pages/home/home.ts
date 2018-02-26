@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera';
-import firebase from 'firebase';
-import { AnimationBuilder, AnimationService } from 'css-animator';
+import { Component } from '@angular/core';
+import { NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
+import { AgregarPage } from '../agregar/agregar';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-home',
@@ -10,46 +11,85 @@ import { AnimationBuilder, AnimationService } from 'css-animator';
 })
 export class HomePage {
 
-  private animator: AnimationBuilder;
-  @ViewChild('elemento') elemento;
+
+  categoria: string = "trabajadores";
+  tipo: any;
+  titulo : any;
+  personasRef: AngularFireList<any>;
+  personas: Observable<any[]>;
+  prueba = [];
+  Uid : string;
 
 
 
-  constructor( public navCtrl: NavController, animacion : AnimationService, private camara : Camera) {
-    this.animator = animacion.builder();
+  constructor( public loadctrl : LoadingController, private afAuth:AngularFireAuth, private afDatabase : AngularFireDatabase, public navCtrl: NavController, public viewCtrl : ViewController, public modalCtrl: ModalController, public navP : NavParams) {
 
+    let loader = this.loadctrl.create({
+      content: "Espere porfavor...",
+       });
+      loader.present();
+    
+    this.tipo = this.categoria;
+    console.log(this.categoria);
+
+    this.Uid = this.afAuth.auth.currentUser.uid;
+    this.tipo = this.tipo+"/"+this.Uid;
+    console.log(this.tipo);
+    this.personasRef = this.afDatabase.list(this.tipo);
+    this.personas = this.personasRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      
+    });
+    this.personas.subscribe(respuesta =>{
+      this.prueba = respuesta;
+      loader.dismiss();
+    });
+  
+
+    
   }
 
   ionViewWillLoad(){
     
   }
 
-  animalo(){
-    this.animator.setType('flipInX').show(this.elemento.nativeElement);
-  }
-
-  tomarfoto(){
-    this.camara.getPicture({
-      quality : 100,
-      destinationType : this.camara.DestinationType.DATA_URL,
-      sourceType : this.camara.PictureSourceType.PHOTOLIBRARY,
-      allowEdit : true,
-      encodingType: this.camara.EncodingType.JPEG,
-      targetWidth: 500,
-      targetHeight: 500,
-      saveToPhotoAlbum: true
-    }).then(foto => {
-            let fotoref = firebase.storage().ref('usuarios/fotos_perfil/user1.jpg');
-            fotoref.putString(foto, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
-              firebase.database().ref('usuario').set(foto_guardad.downloadURL);
-            });
-    }, error => {
-      // Log an error to the console if something goes wrong.
-      console.log("ERROR -> " + JSON.stringify(error));
+  agregar(){
+    this.titulo = this.categoria;
+    let modal = this.modalCtrl.create(AgregarPage,{
+      tipo: this.tipo,
+      titulo: this.titulo
     });
+    modal.present();
 
 
   }
+
+  segCambio(){
+
+    let loader = this.loadctrl.create({
+      content: "Espere porfavor...",
+       });
+      loader.present();
+    
+    this.tipo = this.categoria;
+
+    this.Uid = this.afAuth.auth.currentUser.uid;
+    this.tipo = this.tipo+"/"+this.Uid;
+    console.log(this.tipo);
+    this.personasRef = this.afDatabase.list(this.tipo);
+    this.personas = this.personasRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      
+    });
+    this.personas.subscribe(respuesta =>{
+      this.prueba = respuesta;
+      loader.dismiss();
+    });
+  
+  }
+
+
+  
     
 }
 

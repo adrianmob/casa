@@ -1,30 +1,61 @@
-<ion-header >
+<ion-header>
+    <ion-toolbar>
+      <ion-segment [(ngModel)]="categoria" color="nav" (ionChange)="segCambio()">
+        <ion-segment-button value="trabajadores">
+          Trabajadores
+        </ion-segment-button>
+        <ion-segment-button value="visitantes">
+          Visitantes
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-navbar color="secondary">
-      <ion-title>Inicio</ion-title>
-    </ion-navbar>
+  
 
-</ion-header>
+<ion-content [ngSwitch]="categoria" >
 
-<ion-content padding>
+    
 
-    <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
+    <div class="contenedor">
+        <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
+
+    </div>
+    
 
 
-    <ion-card #elemento>
-        <img src="https://e.an.amtv.pe/will-smith-parte-jurado-este-importante-festival-internacional-624x352-363452.jpg"/>
-        <ion-card-content>
-          <ion-card-title>
-            Nine Inch Nails Live
-            </ion-card-title>
-          <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
-          </p>
-        </ion-card-content>
-      </ion-card>
+    <div  *ngSwitchCase="'trabajadores'" >
+
+        <ion-card *ngFor="let item of prueba">
+            <ngx-qrcode qrc-element-type="img" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
+            <ion-card-content>
+              <ion-card-title class="card">
+                  <ion-icon class="icono" name="person"></ion-icon>
+                  {{ item.name }}
+                </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+
+        </div>
+
+        <div  *ngSwitchCase="'visitantes'" >
+
+          <ion-card *ngFor="let item of prueba">
+              <ngx-qrcode qrc-element-type="img" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
+              <ion-card-content>
+                <ion-card-title class="card">
+                    <ion-icon class="icono" name="person"></ion-icon>
+                    {{ item.name }}
+                  </ion-card-title>
+              </ion-card-content>
+            </ion-card>
+  
+          </div>
+
+      <ion-fab right bottom>
+          <button ion-fab class="boton"  (click)="agregar()"><ion-icon name="create"></ion-icon></button>
+          </ion-fab>
       
-          <button ion-button (click)="animalo()">click</button>
     
   
 </ion-content>

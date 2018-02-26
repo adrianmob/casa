@@ -33,4 +33,55 @@
 }
 
 
+.tabs-md .tab-button[aria-selected=true] .tab-button-text {
+    color:#efba2c;
+    
+}
+
+.tabs-md .tab-button[aria-selected=false]{
+    
+    background-color : rgb(8, 8, 8);
+}
+
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color:#efba2c;
+}
+
+.tabs-md .tab-button[aria-selected=false] .tab-button-text {
+    color:#efbb2c6c;
+}
+
+
+.tabs-md .tab-button[aria-selected=false] .tab-button-icon {
+    color:#efbb2c6c;
+}
+
+.tabs-ios .tab-button[aria-selected=true] .tab-button-text {
+    color:#efba2c;
+}
+
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+    color:#efba2c;
+}
+
+.tabs-ios .tab-button[aria-selected=false]{
+    
+    background-color : rgb(8, 8, 8);
+}
+
+.tabs-ios .tab-button[aria-selected=false] .tab-button-text {
+    color:#efbb2c6c;
+}
+
+.tabs-ios .tab-button[aria-selected=false] .tab-button-icon {
+    color:#efbb2c6c;
+}
+
+.tabs-md-tab[tabsHighlight=true] .tab-highlight {
+    background: #efba2c;
+}
+
+
+
 

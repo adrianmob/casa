@@ -2,7 +2,28 @@ page-reportes {
 
     .logo{
         display: block;
-        margin: -15px auto 10px;
+        margin: 0 auto 10px;
     }
+
+    .boton{
+        background-color: #efba2c;
+    }
+
+    .scroll-content{
+        background: linear-gradient(10deg, rgb(185, 185, 185), rgba(114, 114, 114, 0.671));
+    
+     }
+
+     .contenedor{
+        background-color: rgba(255, 255, 255, 0.685);
+        padding: 0;
+        width: 100%;
+        
+
+    }
+
+
+
+   
   
 }

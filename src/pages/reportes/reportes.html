@@ -1,15 +1,19 @@
 
 <ion-header >
 
-  <ion-navbar color="secondary">
-    <ion-title>Reportes</ion-title>
+  <ion-navbar color="nav">
+    <ion-title text-center>Reportes</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content >
 
-    <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
+    <div class="contenedor">
+      
+        <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
+
+    </div>
 
 
     <ion-card *ngFor="let reporte of reportes">
@@ -29,7 +33,7 @@
       </ion-card>
 
       <ion-fab right bottom>
-        <button ion-fab color="secondary" (click)="ir_detalle_reporte()"><ion-icon name="create"></ion-icon></button>
+        <button ion-fab class="boton" (click)="ir_detalle_reporte()"><ion-icon name="create"></ion-icon></button>
         </ion-fab>
 
 </ion-content>

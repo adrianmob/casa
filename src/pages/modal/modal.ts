@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
+  
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
