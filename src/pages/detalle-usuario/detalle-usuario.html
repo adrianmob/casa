@@ -7,11 +7,11 @@
 <ion-header>
 
   <ion-navbar color="nav">
-    <ion-buttons end>
-      <button ion-button (click)="close()">
-        <ion-icon name="close-circle"></ion-icon>
-      </button>
-    </ion-buttons>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="close()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+        </ion-buttons>
     <ion-title text-center>Editar usuario</ion-title>
   </ion-navbar>
 
@@ -31,7 +31,7 @@
           <ion-col col-6>
 
       <ion-item>
-        <ion-label floating>Nombre</ion-label>
+          <ion-label stacked>Nombre</ion-label>
         <ion-input [(ngModel)]="usuario.nombre" name="nombre" type="text" autocapitalize="off">
         </ion-input>
       </ion-item>
@@ -40,41 +40,31 @@
 
       <ion-col col-6>
 
-      <ion-item>
-        <ion-label floating>Apellido</ion-label>
+          <ion-item>
+              <ion-label stacked>Apellido</ion-label>
         <ion-input [(ngModel)]="usuario.apellido" name="apellido" type="text">
         </ion-input>
       </ion-item>
 
       </ion-col>
 
-      <ion-col col-6>
-
-      <ion-item>
-        <ion-label floating>correo</ion-label>
-        <ion-input [(ngModel)]="usuario.correo" name="correo" type="email">
-        </ion-input>
-      </ion-item>
-
-       </ion-col>
 
     <ion-col col-6>
       
 
       <ion-item>
-        <ion-label floating>telefono</ion-label>
+          <ion-label stacked>Telefono</ion-label>
         <ion-input [(ngModel)]="usuario.telefono" name="telefono" type="number">
         </ion-input>
       </ion-item>
 
     </ion-col>
 
-   
 
     <ion-col col-6>
 
       <ion-item>
-        <ion-label floating>calle</ion-label>
+          <ion-label stacked>Calle</ion-label>
         <ion-input [(ngModel)]="usuario.calle" name="calle" type="text">
         </ion-input>
       </ion-item>
@@ -84,17 +74,17 @@
       <ion-col col-6>
 
       <ion-item>
-        <ion-label floating>numero</ion-label>
+          <ion-label stacked>Número</ion-label>
         <ion-input [(ngModel)]="usuario.numero" name="numero" type="number">
         </ion-input>
       </ion-item>
 
     </ion-col>
 
-    <ion-col col-12>
+    <ion-col col-6>
 
       <ion-item>
-        <ion-label floating>colonia</ion-label>
+          <ion-label stacked>Colonia</ion-label>
         <ion-input [(ngModel)]="usuario.colonia" name="colonia" type="text">
         </ion-input>
       </ion-item>
@@ -107,13 +97,15 @@
 
 </ion-grid>
 
-</ion-card>
+
 
       <div padding>
-        <button ion-button (click)="edit_usuario()" type="submit" color="primary" block>
+        <button ion-button (click)="edit_usuario()" block>
           Guardar ajustes
         </button>
       </div>
+
+    </ion-card>
   
 
 </ion-content>

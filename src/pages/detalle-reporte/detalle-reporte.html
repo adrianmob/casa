@@ -6,53 +6,65 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Agregar  reporte</ion-title>
+  <ion-navbar color="nav" text-center>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="close()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+        </ion-buttons>
+    <ion-title>Agregar reporte</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+
+  <ion-card>
+
+    <ion-grid>
+
+      <ion-row>
 
 
-    <ion-list>
-        <form>
-          <ion-item>
-            <ion-label floating>Asunto</ion-label>
-            <ion-input
-              [(ngModel)]="reporte.asunto"
-              name="asunto"
-              type="text"
-              required
-              
-            >
-            </ion-input>
-          </ion-item>
-    
-          <ion-item>
-            <ion-label floating>Descripción</ion-label>
-            <ion-textarea
-              [(ngModel)]="reporte.descripcion"
-              name="descripcion"
-              required
-              >
+        <ion-col col-12>
+
+         
+
+            <ion-item>
+
+                <ion-label stacked>Asunto</ion-label>
+              <ion-input [(ngModel)]="reporte.asunto" name="asunto" type="text" required>
+              </ion-input>
+            </ion-item>
+
+          </ion-col>
+
+          <ion-col col-12>
+
+            <ion-item>
+                <ion-label stacked>Descripción</ion-label>
+              <ion-textarea [(ngModel)]="reporte.descripcion" name="descripcion" required>
               </ion-textarea>
             </ion-item>
-              
-          
-          <div padding>
-            <button
-                ion-button 
-                (click)="add_reporte()"
-                type="submit"
-                color="primary"
-                block
-            >
-              Guardar reporte
-            </button>
-          </div>
-        </form>
-      </ion-list>
+
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+        
+
+           <div padding>
+
+              <button ion-button (click)="add_reporte()" type="submit"  block>
+                Guardar reporte
+              </button>
+            </div>
+
+          </ion-card>
+
+
+         
+
 
 </ion-content>

@@ -16,7 +16,7 @@
     </div>
 
 
-    <ion-card *ngFor="let reporte of reportes">
+    <ion-card  *ngFor="let reporte of reportes">
         <ion-card-header center text-center>
          {{ reporte.asunto }} 
         </ion-card-header>
@@ -30,10 +30,16 @@
             </ion-note>
           </ion-col>
         </ion-row>
+        <ion-item-options side="left">
+            <button ion-button >Favorite</button>
+            <button ion-button color="danger" >Share</button>
+          </ion-item-options>
       </ion-card>
 
+      
+
       <ion-fab right bottom>
-        <button ion-fab class="boton" (click)="ir_detalle_reporte()"><ion-icon name="create"></ion-icon></button>
+        <button ion-fab (click)="ir_detalle_reporte()"><ion-icon name="create"></ion-icon></button>
         </ion-fab>
 
 </ion-content>

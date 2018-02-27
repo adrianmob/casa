@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, LoadingController, ModalController, Modal } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, LoadingController, ModalController, ActionSheetController  } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DetalleUsuarioPage } from '../detalle-usuario/detalle-usuario';
@@ -11,14 +11,13 @@ import { DetalleUsuarioPage } from '../detalle-usuario/detalle-usuario';
 })
 export class UsuariosPage {
 
-  public show: boolean = false;
   public usuario = {};
-  public press: number = 0;
 
 
   constructor(public navCtrl: NavController, public usua: UsuarioProvider, private afAuth: AngularFireAuth,
               public loadctrl: LoadingController,
-              public modal: ModalController) {
+              public modal: ModalController,
+              public actionCtrl: ActionSheetController) {
   
       let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -41,32 +40,25 @@ export class UsuariosPage {
 
      }
 
-     opcion(){
-       this.show = true;
-
-     }
-
-     hide_opcion(){
-      this.press++;
-     if(this.press > 1){
-       this.show = false;
-       this.press = 0;
-     }
-      
+     foto_perfil(){
+      let actionSheet = this.actionCtrl.create({
+        title: 'Foto de perfil',
+        buttons: [
+          {
+            text: 'Tomar foto',
+            role: 'Foto',
+            handler: () => {
+              this.usua.camera();
+            }
+          },{
+            text: 'Escoger imagen',
+            role: 'Imagen',
+            handler: () => {
+              this.usua.imagen();
+            }
+          }
+        ]
+      });
+      actionSheet.present();
+    }
   }
-
-  tomarFoto(){
-    this.usua.camera();
-  }
-
-
-  tomarImagen(){
-    this.usua.imagen();
-    
-  }
-}
-
-
-  
-
-

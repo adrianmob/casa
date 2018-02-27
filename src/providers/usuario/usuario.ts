@@ -46,7 +46,7 @@ export class UsuarioProvider {
       allowEdit : true,
       encodingType: this.camara.EncodingType.JPEG,
       targetWidth: 720,
-      targetHeight: 1080,
+      targetHeight: 720,
       saveToPhotoAlbum: true
     }).then(foto => {
             let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);
@@ -68,7 +68,7 @@ export class UsuarioProvider {
       allowEdit : true,
       encodingType: this.camara.EncodingType.JPEG,
       targetWidth: 720,
-      targetHeight: 1080,
+      targetHeight: 720,
       saveToPhotoAlbum: true
     }).then(foto => {
             let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);

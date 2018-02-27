@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { DetalleReportePage } from '../detalle-reporte/detalle-reporte';
 
@@ -19,7 +19,7 @@ export class ReportesPage {
 
  public reportes = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public usua: UsuarioProvider, public loadctrl: LoadingController) {
+  constructor(public modal: ModalController, public navCtrl: NavController, public navParams: NavParams,  public usua: UsuarioProvider, public loadctrl: LoadingController) {
       
     let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -38,7 +38,8 @@ export class ReportesPage {
   }
 
   ir_detalle_reporte(){
-    this.navCtrl.push(DetalleReportePage);  
+    let modal = this.modal.create(DetalleReportePage);
+      modal.present();
 
    }
 
