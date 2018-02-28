@@ -27,7 +27,7 @@
     <div  *ngSwitchCase="'trabajadores'" >
 
         <ion-card *ngFor="let item of prueba">
-            <ngx-qrcode qrc-element-type="img" id="{{item.key}}" (click)="zoom(item)" (press)="vamos(item)" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
+            <ngx-qrcode qrc-element-type="img" id="{{item.key}}" (tap)="zoom(item)" (press)="vamos(item)" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
             <ion-card-content>
               <ion-card-title class="card">
                   <ion-icon class="icono" name="person"></ion-icon>
@@ -41,7 +41,7 @@
         <div  *ngSwitchCase="'visitantes'" >
 
           <ion-card *ngFor="let item of prueba" >
-              <ngx-qrcode id="{{item.key}}" (press)="vamos(item)" (click)="zoom(item)" qrc-element-type="img" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
+              <ngx-qrcode id="{{item.key}}" (press)="vamos(item)" (tap)="zoom(item)" qrc-element-type="img" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
               <ion-card-content>
                 <ion-card-title class="card">
                     <ion-icon class="icono" name="person"></ion-icon>

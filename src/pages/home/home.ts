@@ -86,11 +86,12 @@ export class HomePage {
   zoom(item){
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
     var url = imagen.getAttribute("src");
-    this.photoViewer.show(url);
+    console.log(url);
+    this.photoViewer.show("http://media3.viajesporeuskadi.com/c/16-home_slider/naturaleza-y-paisaje.jpg");
   }
 
   vamos(item){
-    this.vibration.vibrate(1000);
+    this.vibration.vibrate(500);
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
     var url = imagen.getAttribute("src");
     let actionSheet = this.actionSheet.create({
