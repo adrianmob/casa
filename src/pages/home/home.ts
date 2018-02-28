@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
+import { ActionSheetController ,NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
 import { AgregarPage } from '../agregar/agregar';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { PhotoLibrary } from '@ionic-native/photo-library';
 
 @Component({
   selector: 'page-home',
@@ -22,7 +23,15 @@ export class HomePage {
 
 
 
-  constructor( public loadctrl : LoadingController, private afAuth:AngularFireAuth, private afDatabase : AngularFireDatabase, public navCtrl: NavController, public viewCtrl : ViewController, public modalCtrl: ModalController, public navP : NavParams) {
+  constructor( public loadctrl : LoadingController, 
+               private afAuth:AngularFireAuth, 
+               private afDatabase : AngularFireDatabase, 
+               public navCtrl: NavController, 
+               public viewCtrl : ViewController, 
+               public modalCtrl: ModalController, 
+               public navP : NavParams,
+               private photoLib : PhotoLibrary,
+               public actionSheet : ActionSheetController) {
 
     let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -40,10 +49,13 @@ export class HomePage {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       
     });
+    
     this.personas.subscribe(respuesta =>{
       this.prueba = respuesta;
       loader.dismiss();
     });
+
+    
   
 
     
@@ -64,6 +76,36 @@ export class HomePage {
 
   }
 
+  vamos(item){
+    var imagen = document.querySelector('#'+item.key+" .qrcode img");
+    console.log(imagen.baseURI);
+    console.log("hola");
+    console.log(this.prueba);
+    let actionSheet = this.actionSheet.create({
+      title: 'Guardar imagen',
+      buttons: [
+        {
+          text: 'Guardar imagen',
+          icon: 'cloud-download',
+          role: 'destructive',
+          handler: () => {
+            this.photoLib.requestAuthorization().then(() =>{
+              
+              this.photoLib.saveImage(imagen.baseURI,"Qr");
+              
+
+            }).catch(err => console.log('Los permisos fueron negados'));
+          }
+        },{
+          text: 'Cancelar',
+          role: 'cancel',
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+    
+
   segCambio(){
 
     let loader = this.loadctrl.create({
@@ -81,10 +123,13 @@ export class HomePage {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       
     });
+  
     this.personas.subscribe(respuesta =>{
       this.prueba = respuesta;
       loader.dismiss();
     });
+
+    
   
   }
 

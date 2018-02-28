@@ -16,7 +16,7 @@
     </div>
 
 
-    <ion-card  *ngFor="let reporte of reportes">
+    <ion-card  *ngFor="let reporte of reporte" (click)="opciones(reporte)">
         <ion-card-header center text-center>
          {{ reporte.asunto }} 
         </ion-card-header>

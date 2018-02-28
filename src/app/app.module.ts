@@ -26,6 +26,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { Camera } from '@ionic-native/camera';
+import { PhotoLibrary } from '@ionic-native/photo-library';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAja20tnMsPmKsqnIAYE8EC9itQhDZH340",
@@ -78,7 +80,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     UsuarioProvider,
-    Camera
+    Camera,
+    PhotoLibrary
   ]
 })
 export class AppModule {}

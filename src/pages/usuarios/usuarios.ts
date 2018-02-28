@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController, ActionSheetController  } from 'ionic-angular';
+import { Platform, NavController, LoadingController, ModalController, ActionSheetController  } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DetalleUsuarioPage } from '../detalle-usuario/detalle-usuario';
@@ -17,7 +17,8 @@ export class UsuariosPage {
   constructor(public navCtrl: NavController, public usua: UsuarioProvider, private afAuth: AngularFireAuth,
               public loadctrl: LoadingController,
               public modal: ModalController,
-              public actionCtrl: ActionSheetController) {
+              public actionCtrl: ActionSheetController,
+              public platform: Platform) {
   
       let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -43,19 +44,27 @@ export class UsuariosPage {
      foto_perfil(){
       let actionSheet = this.actionCtrl.create({
         title: 'Foto de perfil',
+        cssClass: 'hoja-accion',
         buttons: [
           {
             text: 'Tomar foto',
-            role: 'Foto',
+            icon: 'camera',
+            role: 'destructive',
             handler: () => {
               this.usua.camera();
             }
           },{
             text: 'Escoger imagen',
-            role: 'Imagen',
+            role: 'destructive',
+            icon: "image",
             handler: () => {
               this.usua.imagen();
             }
+          },{
+            text: 'Cancelar',
+            role: 'cancel',
+            icon: this.platform.is('android') ? 'close' : null
+
           }
         ]
       });

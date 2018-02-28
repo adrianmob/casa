@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { ActionSheetController ,IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { DetalleReportePage } from '../detalle-reporte/detalle-reporte';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the ReportesPage page.
@@ -17,18 +20,37 @@ import { DetalleReportePage } from '../detalle-reporte/detalle-reporte';
 })
 export class ReportesPage {
 
- public reportes = [];
+  reportes: Observable<any[]>;
+  reporte = [];
+  Uid: string;
 
-  constructor(public modal: ModalController, public navCtrl: NavController, public navParams: NavParams,  public usua: UsuarioProvider, public loadctrl: LoadingController) {
+  constructor(public modal: ModalController, 
+              public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public usua: UsuarioProvider, 
+              public loadctrl: LoadingController,
+              public actionCtrl:ActionSheetController,
+              private afDB: AngularFireDatabase, 
+              private afAuth:AngularFireAuth) {
+
+    this.Uid = this.afAuth.auth.currentUser.uid;
       
     let loader = this.loadctrl.create({
       content: "Espere porfavor...",
        });
       loader.present();
-      this.usua.get_reportes().subscribe(data =>{
-      this.reportes = data;
-      loader.dismiss();
+      this.reportes = this.afDB.list('reportes/'+this.Uid).snapshotChanges().map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      });
+  
+       this.reportes.subscribe( respuesta =>{
+        this.reporte = respuesta;
+        console.log(this.reporte);
+        loader.dismiss();
+         
     });
+  
+
     
   }
 
@@ -43,4 +65,35 @@ export class ReportesPage {
 
    }
 
-}
+   opciones(reporte){
+
+    let actionSheet = this.actionCtrl.create({
+      title: 'Modificar reporte',
+      buttons: [
+        {
+          text: 'Eliminar',
+          role: 'destructive',
+          handler: () => {
+            console.log(reporte);
+            this.usua.delete_reportes(reporte.key);
+          }
+        },
+        {
+          text: 'Editar',
+          role: 'destructive',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+ 
+    actionSheet.present();
+  }
+
+   }
+

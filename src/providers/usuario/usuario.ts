@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
 import firebase from 'firebase';
 
+
 /*
   Generated class for the UsuarioProvider provider.
 
@@ -15,16 +16,27 @@ export class UsuarioProvider {
 
   Uid : string;
   id: any;
+ 
+ 
 
   constructor(private afDB: AngularFireDatabase, private afAuth:AngularFireAuth, private camara : Camera) {
     this.Uid = this.afAuth.auth.currentUser.uid;
     this.id = Date.now();
+
     
   }
+
+  delete_reportes(id){
+
+    this.afDB.database.ref('reportes/'+this.Uid+'/'+id).remove();
+
+  }
+
 
   get_usuarios(){
     return this.afDB.object('usuarios/'+this.Uid).valueChanges();
   }
+
 
   editar_usuarios(usuario){
     this.afDB.database.ref('usuarios/'+this.Uid).set(usuario);
@@ -34,9 +46,6 @@ export class UsuarioProvider {
     this.afDB.database.ref('reportes/'+this.Uid+'/'+this.id).set(reportes);
   }
 
-  get_reportes(){
-    return this.afDB.list('reportes/'+this.Uid).valueChanges();
-  }
 
   camera(){
     this.camara.getPicture({
