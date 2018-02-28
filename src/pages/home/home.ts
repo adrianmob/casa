@@ -87,11 +87,22 @@ export class HomePage {
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
     var url = imagen.getAttribute("src");
     console.log(url);
-    this.photoViewer.show("http://media3.viajesporeuskadi.com/c/16-home_slider/naturaleza-y-paisaje.jpg");
+    try{
+    this.photoViewer.show('http://media3.viajesporeuskadi.com/c/16-home_slider/naturaleza-y-paisaje.jpg');
+    }
+    catch(error){
+      let toast = this.toastCtrl.create({
+        message: error,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+
+    }
   }
 
   vamos(item){
-    this.vibration.vibrate(500);
+    this.vibration.vibrate(250);
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
     var url = imagen.getAttribute("src");
     let actionSheet = this.actionSheet.create({
@@ -102,25 +113,12 @@ export class HomePage {
           icon: 'cloud-download',
           role: 'destructive',
           handler: () => {
-            this.base.base64ToGallery(url, { prefix: '_img' }).then(
-              res =>{
-                let toast = this.toastCtrl.create({
-                  message: res,
-                  duration: 3000,
-                  position: 'top'
-                });
-                toast.present();
-              },
-              err => { let toast = this.toastCtrl.create({
-                message: err,
-                duration: 3000,
-                position: 'top'
-              });
-              toast.present();
-            
-            }
 
-            );
+            this.photoLib.requestAuthorization().then(() => {
+              var item = this.photoLib.saveImage(url,"QR");
+              console.log(item);
+            
+            }).catch(err => console.log('Los permisos fueron negado'));
           }
         },{
           text: 'Cancelar',
