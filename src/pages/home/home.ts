@@ -89,10 +89,10 @@ export class HomePage {
           icon: 'cloud-download',
           role: 'destructive',
           handler: () => {
-            this.photoLib.requestAuthorization().then(() =>{
+            this.photoLib.requestAuthorization({write: true}).then(() =>{
               
               this.photoLib.saveImage(imagen.baseURI,"Qr");
-              
+              this.photoLib.getLibrary()
 
             }).catch(err => console.log('Los permisos fueron negados'));
           }
