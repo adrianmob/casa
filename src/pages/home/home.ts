@@ -81,9 +81,7 @@ export class HomePage {
 
   vamos(item){
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
-    console.log(imagen.baseURI);
-    console.log("hola");
-    console.log(this.prueba);
+    var url = imagen.getAttribute("src");
     let actionSheet = this.actionSheet.create({
       title: 'Guardar imagen',
       buttons: [
@@ -92,17 +90,17 @@ export class HomePage {
           icon: 'cloud-download',
           role: 'destructive',
           handler: () => {
-            this.base.base64ToGallery(imagen.baseURI, { prefix: '_img' }).then(
+            this.base.base64ToGallery(url, { prefix: '_img' }).then(
               res =>{
                 let toast = this.toastCtrl.create({
-                  message: 'Bien',
+                  message: res,
                   duration: 3000,
                   position: 'top'
                 });
                 toast.present();
               },
               err => { let toast = this.toastCtrl.create({
-                message: 'Mal',
+                message: err,
                 duration: 3000,
                 position: 'top'
               });
