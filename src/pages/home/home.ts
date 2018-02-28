@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { PhotoLibrary } from '@ionic-native/photo-library';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { Vibration } from '@ionic-native/vibration';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'page-home',
@@ -34,7 +36,9 @@ export class HomePage {
                private photoLib : PhotoLibrary,
                public actionSheet : ActionSheetController,
                private base : Base64ToGallery,
-               public toastCtrl: ToastController) {
+               public toastCtrl: ToastController,
+               private vibration : Vibration,
+               private photoViewer: PhotoViewer) {
 
     let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -79,7 +83,14 @@ export class HomePage {
 
   }
 
+  zoom(item){
+    var imagen = document.querySelector('#'+item.key+" .qrcode img");
+    var url = imagen.getAttribute("src");
+    this.photoViewer.show(url);
+  }
+
   vamos(item){
+    this.vibration.vibrate(1000);
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
     var url = imagen.getAttribute("src");
     let actionSheet = this.actionSheet.create({
