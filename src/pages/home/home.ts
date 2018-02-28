@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { ActionSheetController ,NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
+import { ToastController ,ActionSheetController ,NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
 import { AgregarPage } from '../agregar/agregar';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { PhotoLibrary } from '@ionic-native/photo-library';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 
 @Component({
   selector: 'page-home',
@@ -31,7 +32,9 @@ export class HomePage {
                public modalCtrl: ModalController, 
                public navP : NavParams,
                private photoLib : PhotoLibrary,
-               public actionSheet : ActionSheetController) {
+               public actionSheet : ActionSheetController,
+               private base : Base64ToGallery,
+               public toastCtrl: ToastController) {
 
     let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -89,12 +92,25 @@ export class HomePage {
           icon: 'cloud-download',
           role: 'destructive',
           handler: () => {
-            this.photoLib.requestAuthorization({write: true}).then(() =>{
-              
-              this.photoLib.saveImage(imagen.baseURI,"Qr");
-              this.photoLib.getLibrary()
+            this.base.base64ToGallery(imagen.baseURI, { prefix: '_img' }).then(
+              res =>{
+                let toast = this.toastCtrl.create({
+                  message: 'Bien',
+                  duration: 3000,
+                  position: 'top'
+                });
+                toast.present();
+              },
+              err => { let toast = this.toastCtrl.create({
+                message: 'Mal',
+                duration: 3000,
+                position: 'top'
+              });
+              toast.present();
+            
+            }
 
-            }).catch(err => console.log('Los permisos fueron negados'));
+            );
           }
         },{
           text: 'Cancelar',

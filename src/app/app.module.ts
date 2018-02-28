@@ -27,6 +27,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { Camera } from '@ionic-native/camera';
 import { PhotoLibrary } from '@ionic-native/photo-library';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 
 
 export const firebaseConfig = {
@@ -81,7 +82,8 @@ export const firebaseConfig = {
     AuthProvider,
     UsuarioProvider,
     Camera,
-    PhotoLibrary
+    PhotoLibrary,
+    Base64ToGallery
   ]
 })
 export class AppModule {}
