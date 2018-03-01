@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { ToastController ,ActionSheetController ,NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
+import { ToastController ,ActionSheetController ,NavController, NavParams, ViewController, ModalController, LoadingController, Platform } from 'ionic-angular';
 import { AgregarPage } from '../agregar/agregar';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { PhotoLibrary } from '@ionic-native/photo-library';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { Vibration } from '@ionic-native/vibration';
-import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 @Component({
   selector: 'page-home',
@@ -33,12 +32,11 @@ export class HomePage {
                public viewCtrl : ViewController, 
                public modalCtrl: ModalController, 
                public navP : NavParams,
-               private photoLib : PhotoLibrary,
                public actionSheet : ActionSheetController,
                private base : Base64ToGallery,
                public toastCtrl: ToastController,
                private vibration : Vibration,
-               private photoViewer: PhotoViewer) {
+               public Platform : Platform) {
 
     let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -83,30 +81,15 @@ export class HomePage {
 
   }
 
-  zoom(item){
-    var imagen = document.querySelector('#'+item.key+" .qrcode img");
-    var url = imagen.getAttribute("src");
-    console.log(url);
-    try{
-    this.photoViewer.show('http://media3.viajesporeuskadi.com/c/16-home_slider/naturaleza-y-paisaje.jpg');
-    }
-    catch(error){
-      let toast = this.toastCtrl.create({
-        message: error,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-
-    }
-  }
+  
 
   vamos(item){
-    this.vibration.vibrate(250);
+    this.vibration.vibrate(100);
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
     var url = imagen.getAttribute("src");
     let actionSheet = this.actionSheet.create({
       title: 'Guardar imagen',
+      cssClass: 'hoja-accion',
       buttons: [
         {
           text: 'Guardar imagen',
@@ -114,14 +97,15 @@ export class HomePage {
           role: 'destructive',
           handler: () => {
 
-            this.photoLib.requestAuthorization().then(() => {
-              var item = this.photoLib.saveImage(url,"QR");
-              console.log(item);
-            
-            }).catch(err => console.log('Los permisos fueron negado'));
+            console.log(item.name);
+            this.base.base64ToGallery(url, { prefix: '_img' }).then(
+              res => console.log('Saved image to gallery ', res),
+              err => console.log('Error saving image to gallery ', err)
+            );
           }
         },{
           text: 'Cancelar',
+          icon: this.Platform.is('android') ? 'close' : null,
           role: 'cancel',
         }
       ]
