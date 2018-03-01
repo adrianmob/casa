@@ -104,6 +104,7 @@ export class HomePage {
                 message: '¡La imagen se ha descragdo con exito!',
                 duration: 3000,
                 position: 'bottom'});
+                toast.present();
               },
 
               err => {
@@ -111,6 +112,7 @@ export class HomePage {
                 message: '¡La imagen no se ha descragdo!',
                 duration: 3000,
                 position: 'bottom'});
+                toast.present();
               }
             );
           }
