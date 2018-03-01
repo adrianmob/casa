@@ -84,7 +84,7 @@ export class HomePage {
   
 
   vamos(item){
-    this.vibration.vibrate(100);
+    this.vibration.vibrate(50);
     var imagen = document.querySelector('#'+item.key+" .qrcode img");
     var url = imagen.getAttribute("src");
     let actionSheet = this.actionSheet.create({
@@ -97,10 +97,21 @@ export class HomePage {
           role: 'destructive',
           handler: () => {
 
-            console.log(item.name);
-            this.base.base64ToGallery(url, { prefix: '_img' }).then(
-              res => console.log('Saved image to gallery ', res),
-              err => console.log('Error saving image to gallery ', err)
+            this.base.base64ToGallery(url, { prefix: item.name }).then(
+
+              res => {
+                let toast = this.toastCtrl.create({
+                message: '¡La imagen se ha descragdo con exito!',
+                duration: 3000,
+                position: 'bottom'});
+              },
+
+              err => {
+                let toast = this.toastCtrl.create({
+                message: '¡La imagen no se ha descragdo!',
+                duration: 3000,
+                position: 'bottom'});
+              }
             );
           }
         },{

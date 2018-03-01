@@ -16,14 +16,15 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 })
 export class DetalleReportePage {
 
-  public reporte : {asunto: string, descripcion : string, fecha: string};
-  public  fecha : any;
-  
+  public reporte: { asunto: string, descripcion: string, fecha: string };
+  public fecha: any;
+  public boton: boolean = true;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public usua : UsuarioProvider) {
+
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public usua: UsuarioProvider) {
     var f = new Date();
-    this.reporte = {asunto : "", descripcion: "", fecha : ""};
-    this.fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+    this.reporte = { asunto: "", descripcion: "", fecha: "" };
+    this.fecha = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
     this.reporte.fecha = this.fecha;
   }
 
@@ -31,12 +32,22 @@ export class DetalleReportePage {
     console.log('ionViewDidLoad DetalleReportePage');
   }
 
-  add_reporte(){
+  habilitarBoton() {
+    if (this.reporte.asunto != "" && this.reporte.descripcion != "") {
+      this.boton = false;
+    }
+    else {
+      this.boton = true;
+    }
+
+  }
+
+  add_reporte() {
     this.usua.agregar_reporte(this.reporte);
     this.navCtrl.pop();
   }
 
-  close(){
+  close() {
     this.viewCtrl.dismiss();
   }
 

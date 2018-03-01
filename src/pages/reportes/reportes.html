@@ -17,10 +17,11 @@
 
 
     <ion-card  *ngFor="let reporte of reporte" (click)="opciones(reporte)">
-        <ion-card-header center text-center>
+        <ion-card-header class="titulo" text-center>
          {{ reporte.asunto }} 
         </ion-card-header>
-        <ion-card-content>
+        <hr class="linea">
+        <ion-card-content class="contenido">
          {{ reporte.descripcion }}
         </ion-card-content>
         <ion-row >
