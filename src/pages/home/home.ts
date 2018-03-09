@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { Vibration } from '@ionic-native/vibration';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
+import { DetalleTrabajadorPage } from '../detalle-trabajador/detalle-trabajador';
 
 
 @Component({
@@ -36,7 +38,8 @@ export class HomePage {
                private base : Base64ToGallery,
                public toastCtrl: ToastController,
                private vibration : Vibration,
-               public Platform : Platform) {
+               public Platform : Platform,
+               public usua: UsuarioProvider) {
 
     let loader = this.loadctrl.create({
       content: "Espere porfavor...",
@@ -101,7 +104,7 @@ export class HomePage {
 
               res => {
                 let toast = this.toastCtrl.create({
-                message: '¡La imagen se ha descragdo con exito!',
+                message: '¡La imagen se ha descargdo con exito!',
                 duration: 3000,
                 position: 'bottom'});
                 toast.present();
@@ -109,13 +112,20 @@ export class HomePage {
 
               err => {
                 let toast = this.toastCtrl.create({
-                message: '¡La imagen no se ha descragdo!',
+                message: '¡La imagen no se ha descargado!',
                 duration: 3000,
                 position: 'bottom'});
                 toast.present();
               }
             );
-          }
+          }},{
+          text: 'Eliminar',
+          icon: 'trash',
+          role: 'destructive',
+          handler: () => { 
+            console.log(item);
+            this.usua.delete_trabajadores(item.tipo,item.key);}
+          
         },{
           text: 'Cancelar',
           icon: this.Platform.is('android') ? 'close' : null,
@@ -154,10 +164,17 @@ export class HomePage {
   
   }
 
+  detalleTrab(item){
+    let modal = this.modalCtrl.create( DetalleTrabajadorPage,{trabajador : item});
+    modal.present();
+  }
+
 
   
     
 }
+
+
 
 
 

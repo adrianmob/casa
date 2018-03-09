@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../../modelos/user';
 import { TabsPage } from '../tabs/tabs';
@@ -14,7 +14,11 @@ export class RegistroPage {
 
   user = {} as User;
 
-  constructor(private afAuth : AngularFireAuth, public navCtrl: NavController, public navParams: NavParams,private afDatabase : AngularFireDatabase) {
+  constructor(private afAuth : AngularFireAuth, 
+              public navCtrl: NavController, 
+              public navParams: NavParams,
+              private afDatabase : AngularFireDatabase,
+              private alertCtrl: AlertController) {
   }
 
   async registrar(user : User){
@@ -35,5 +39,23 @@ export class RegistroPage {
 
 }
 
+verificarContra(){
+  if( this.user.contrasenaVer != this.user.contrasena){
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: 'Las contraseñas no coinciden',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }else{
+    let alert = this.alertCtrl.create({
+      title: 'Muy bien',
+      subTitle: 'Las contraseñas coinciden',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+  }
 }
+
 

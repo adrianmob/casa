@@ -24,6 +24,9 @@
 
   <ion-card>
 
+     
+
+
   <ion-grid>
 
       <ion-row>
@@ -35,9 +38,37 @@
             <ion-input [(ngModel)] ="agregar.name" name="name" type="text" (keyup)="habilitarBoton()"></ion-input>
           </ion-item>
 
+          <ion-item>
+            <ion-label stacked>Curp</ion-label>
+            <ion-input [(ngModel)]= "agregar.curp" name="curp" type="text" (keyup)="habilitarBoton()"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked>RFC</ion-label>
+            <ion-input [(ngModel)]="agregar.rfc" name="rfc" type="text" (keyup)="habilitarBoton()"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked>Cedula</ion-label>
+            <ion-input [(ngModel)]="agregar.cedula" name="cedula" type="text" (keyup)="habilitarBoton()"></ion-input>
+          </ion-item>
+
         </ion-col>
+
+       <ion-col col-4>
+         <button class="boton" (click)="prueba()" ion-button icon-left><ion-icon name="camera"></ion-icon>
+          IFE
+        </button>
+      </ion-col>
+      <ion-col col-8>
+          <img id="ife"  src="../../assets/imgs/ife.jpg" alt="ife" height="120px">
+        </ion-col>
+       
+      
+      
       
         </ion-row>
+
 
       </ion-grid>
 

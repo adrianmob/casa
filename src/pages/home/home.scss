@@ -9,15 +9,16 @@ page-home {
     .card{
         font-size: 12px;
         text-transform: uppercase;
-        text-align: center;
         color: rgb(0, 0, 0);
         font-weight: bold;
         opacity: 0.8;
     }
 
     .icono{
-        margin-left: -10px;
-        margin-right: 8px;
+        text-align: center;
+        margin-right: 20px;
+        margin-left: 15px;
+        font-size: 18px;
     }
 
     .scroll-content{
@@ -48,6 +49,12 @@ page-home {
     .ion-md-cloud-download, .ion-ios-cloud-download{
         color: rgb(152, 128, 240);
     }
+
+    .ion-md-trash, .ion-ios-trash{
+        color: rgb(255, 2, 2);
+    }
+
+
 
 
   }

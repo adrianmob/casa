@@ -32,6 +32,10 @@ export class UsuarioProvider {
 
   }
 
+  delete_trabajadores(tipo,id){
+    this.afDB.database.ref(tipo+'/'+this.Uid+'/'+id).remove();
+  }
+
 
   get_usuarios(){
     return this.afDB.object('usuarios/'+this.Uid).valueChanges();
@@ -69,7 +73,7 @@ export class UsuarioProvider {
   }
     
 
-  imagen(){
+imagen(){
     this.camara.getPicture({
       quality : 100,
       destinationType : this.camara.DestinationType.DATA_URL,
@@ -80,7 +84,8 @@ export class UsuarioProvider {
       targetHeight: 720,
       saveToPhotoAlbum: true
     }).then(foto => {
-            let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);
+           
+            let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid+'/perfil');
             fotoref.putString(foto, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
               firebase.database().ref('usuarios/'+this.Uid).update({url: foto_guardad.downloadURL});
             });
@@ -89,5 +94,24 @@ export class UsuarioProvider {
       console.log("ERROR -> " + JSON.stringify(error));
     });
   }
+
+
+   imagen_ife(){
+    return this.camara.getPicture({
+      quality : 100,
+      destinationType : this.camara.DestinationType.DATA_URL,
+      sourceType : this.camara.PictureSourceType.PHOTOLIBRARY,
+      allowEdit : true,
+      encodingType: this.camara.EncodingType.JPEG,
+      targetWidth: 720,
+      targetHeight: 720,
+      saveToPhotoAlbum: true
+    });
+
+   
+
+  }
+
+  
 
 }

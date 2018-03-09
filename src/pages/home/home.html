@@ -26,10 +26,10 @@
 
     <div  *ngSwitchCase="'trabajadores'" >
 
-        <ion-card *ngFor="let item of prueba">
-            <ngx-qrcode qrc-element-type="img" id="{{item.key}}" (press)="vamos(item)" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
+        <ion-card *ngFor="let item of prueba" (click)="detalleTrab(item)">
+            <ngx-qrcode qrc-element-type="img" id="{{item.key}}" (press)="vamos(item)" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "curp" : "{{item.curp}}", "rfc" : "{{item.rfc}}", "cedula" : "{{item.cedula}}", "url": "{{ item.url }}", "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
             <ion-card-content>
-              <ion-card-title class="card">
+              <ion-card-title class="card" >
                   <ion-icon class="icono" name="person"></ion-icon>
                   {{ item.name }}
                 </ion-card-title>
@@ -41,12 +41,13 @@
         <div  *ngSwitchCase="'visitantes'" >
 
           <ion-card *ngFor="let item of prueba" >
-              <ngx-qrcode id="{{item.key}}" (press)="vamos(item)" qrc-element-type="img" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
+              <ngx-qrcode id="{{item.key}}" (press)="vamos(item)" qrc-element-type="img" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "curp" : "{{item.curp}}", "rfc" : "{{item.rfc}}", "cedula" : "{{item.cedula}}", "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
               <ion-card-content>
                 <ion-card-title class="card">
                     <ion-icon class="icono" name="person"></ion-icon>
                     {{ item.name }}
                   </ion-card-title>
+                   
               </ion-card-content>
             </ion-card>
   
