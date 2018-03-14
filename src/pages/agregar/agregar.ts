@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 import { Agregar } from '../../modelos/agregar';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
@@ -32,7 +32,8 @@ export class AgregarPage {
               public viewCtrl: ViewController, 
               private afDatabase: AngularFireDatabase,
               public usuario : UsuarioProvider,
-              private afAuth:AngularFireAuth) {
+              private afAuth:AngularFireAuth,
+              public loadingCtrl: LoadingController) {
 
     this.tipo = this.navParams.get('tipo');
     this.agregar.name="";
@@ -62,13 +63,20 @@ export class AgregarPage {
   }
 
   agregar_visitante() {
-    debugger;
+
+    let loader = this.loadingCtrl.create({
+      content: "Guardando...",
+      spinner: "crescent"
+    });
+    loader.present();
+
     this.agregar.tipo = this.tipo_qr;
     console.log(this.agregar.rfc);
-    let fotoref = firebase.storage().ref('usuarios/trabajadores/'+this.Uid+'/'+this.agregar.rfc);
+    let fotoref = firebase.storage().ref('usuarios/trabajadores/'+this.Uid+'/'+this.agregar.curp);
         fotoref.putString(this.imagen, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
           this.agregar.url = foto_guardad.downloadURL;
           this.afDatabase.database.ref(this.tipo).push(this.agregar);
+          loader.dismiss();
           this.viewCtrl.dismiss();
         });
   

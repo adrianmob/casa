@@ -124,7 +124,7 @@ export class HomePage {
           role: 'destructive',
           handler: () => { 
             console.log(item);
-            this.usua.delete_trabajadores(item.tipo,item.key);}
+            this.usua.delete_trabajadores(item.tipo,item.key,item.curp);}
           
         },{
           text: 'Cancelar',

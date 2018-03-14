@@ -32,8 +32,9 @@ export class UsuarioProvider {
 
   }
 
-  delete_trabajadores(tipo,id){
+  delete_trabajadores(tipo,id,curp){
     this.afDB.database.ref(tipo+'/'+this.Uid+'/'+id).remove();
+    firebase.storage().ref('usuarios/trabajadores/'+this.Uid+'/'+curp).delete();
   }
 
 
@@ -100,10 +101,10 @@ imagen(){
     return this.camara.getPicture({
       quality : 100,
       destinationType : this.camara.DestinationType.DATA_URL,
-      sourceType : this.camara.PictureSourceType.PHOTOLIBRARY,
+      sourceType : this.camara.PictureSourceType.CAMERA,
       allowEdit : true,
       encodingType: this.camara.EncodingType.JPEG,
-      targetWidth: 720,
+      targetWidth: 1280,
       targetHeight: 720,
       saveToPhotoAlbum: true
     });
