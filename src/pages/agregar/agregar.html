@@ -40,17 +40,17 @@
 
           <ion-item>
             <ion-label stacked>Curp</ion-label>
-            <ion-input [(ngModel)]= "agregar.curp" name="curp" type="text" (keyup)="habilitarBoton()"></ion-input>
+            <ion-input id="curp"  [(ngModel)]= "agregar.curp" name="curp" type="text" (keyup)="mayus('curp')" (keyup)="habilitarBoton()"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label stacked>RFC</ion-label>
-            <ion-input [(ngModel)]="agregar.rfc" name="rfc" type="text" (keyup)="habilitarBoton()"></ion-input>
+            <ion-input  id="rfc" [(ngModel)]="agregar.rfc" name="rfc" type="text" (keyup)="mayus('rfc')" (keyup)="habilitarBoton()"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label stacked>Cedula</ion-label>
-            <ion-input [(ngModel)]="agregar.cedula" name="cedula" type="text" (keyup)="habilitarBoton()"></ion-input>
+            <ion-input [(ngModel)]="agregar.cedula" name="cedula" type="number" (keyup)="habilitarBoton()"></ion-input>
           </ion-item>
 
         </ion-col>

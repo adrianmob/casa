@@ -26,6 +26,8 @@ export class AgregarPage {
   boton: boolean = true;
   imagen:any = "";
   Uid : string;
+  letraMin: string;
+  letraMay: string
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
@@ -96,6 +98,25 @@ export class AgregarPage {
      
       this.habilitarBoton();
     });
+  }
+
+  mayus(arg){ 
+
+    
+    if(arg == "curp"){
+
+      this.letraMin = document.getElementById("curp").getAttribute("ng-reflect-model");
+      this.letraMay = this.letraMin.toUpperCase();
+      this.agregar.curp = this.letraMay;
+      if(this.agregar.curp.length < 11) this.agregar.rfc = this.letraMay;
+    }else{
+       this.letraMin = document.getElementById("rfc").getAttribute("ng-reflect-model");
+       this.letraMay = this.letraMin.toUpperCase();
+      this.agregar.rfc = this.letraMay;
+
+    }
+    
+    
   }
 
 
