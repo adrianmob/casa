@@ -30,7 +30,7 @@
             <ngx-qrcode qrc-element-type="img" id="{{item.key}}" (press)="vamos(item)" qrc-value='{"clave": "{{ item.key }}" , "nombre": "{{ item.name }}" , "curp" : "{{item.curp}}", "rfc" : "{{item.rfc}}", "cedula" : "{{item.cedula}}", "url": "{{ item.url }}", "tipo": "{{ item.tipo }}" }'></ngx-qrcode>
             <ion-card-content>
               <ion-card-title class="card" >
-                  <ion-icon class="icono" name="person"></ion-icon>
+                <i class="fas fa-qrcode icono"></i>
                   {{ item.name }}
                 </ion-card-title>
             </ion-card-content>
