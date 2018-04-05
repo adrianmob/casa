@@ -47,20 +47,23 @@ export class HomePage {
       loader.present();
     
     this.tipo = this.categoria;
-    console.log(this.categoria);
 
     this.Uid = this.afAuth.auth.currentUser.uid;
     this.tipo = this.tipo+"/"+this.Uid;
-    console.log(this.tipo);
     this.personasRef = this.afDatabase.list(this.tipo);
     this.personas = this.personasRef.snapshotChanges().map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      return changes.map(c =>  ({ key: c.payload.key, ...c.payload.val() }));
+
       
     });
+
     
     this.personas.subscribe(respuesta =>{
       this.prueba = respuesta;
       loader.dismiss();
+
+      console.log(this.prueba);
+    console.log(this.personas);
     });
 
     

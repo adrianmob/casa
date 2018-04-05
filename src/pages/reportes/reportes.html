@@ -15,19 +15,32 @@
 
     </div>
 
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime  displayFormat="DD/MMMM/YYYY" pickerFormat="DD/MMMM/YYYY" min="2018" [(max)] ="event.maximo" [(ngModel)]="event.month" 
+      monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+      monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic"
+      dayNames="domingo, Lunes, Martes, Miercoles, Juves, Viernes, Sabado, Domingo"
+      dayShortNames="Dom, Lum, Mar, Mie, Jue, Vie, Sab"
+      id="fechaInfo"></ion-datetime>
+    </ion-item>
+
+    <button ion-button block  (click)="mostrarBitacora()">Buscar</button> 
+
 
     <ion-card  *ngFor="let reporte of reporte" (click)="opciones(reporte)">
         <ion-card-header class="titulo" text-center>
-         {{ reporte.asunto }} 
+         {{ reporte.nombre }} 
         </ion-card-header>
         <hr class="linea">
         <ion-card-content class="contenido">
-         {{ reporte.descripcion }}
+         hora entrada: {{ reporte.hora_entrada }} <br> <br>
+         hora salida : {{ reporte.hora_salida }}
         </ion-card-content>
         <ion-row >
         <ion-col center text-right >
             <ion-note color="primary">
-              {{ reporte.fecha }}
+              Retardos: {{ reporte.retardo }}
             </ion-note>
           </ion-col>
         </ion-row>
@@ -36,11 +49,5 @@
             <button ion-button color="danger" >Share</button>
           </ion-item-options>
       </ion-card>
-
-      
-
-      <ion-fab right bottom>
-        <button ion-fab (click)="ir_detalle_reporte()"><ion-icon name="add"></ion-icon></button>
-        </ion-fab>
 
 </ion-content>
