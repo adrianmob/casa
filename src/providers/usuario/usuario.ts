@@ -39,7 +39,9 @@ export class UsuarioProvider {
 
 
   get_usuarios(){
+  
     return this.afDB.object('usuarios/'+this.Uid).valueChanges();
+
   }
 
 

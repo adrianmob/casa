@@ -3,6 +3,8 @@ import { Platform, NavController, LoadingController, ModalController, ActionShee
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DetalleUsuarioPage } from '../detalle-usuario/detalle-usuario';
+import firebase from 'firebase';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 
 @Component({
@@ -12,21 +14,28 @@ import { DetalleUsuarioPage } from '../detalle-usuario/detalle-usuario';
 export class UsuariosPage {
 
   public usuario = {};
+  public Uid;
 
 
   constructor(public navCtrl: NavController, public usua: UsuarioProvider, private afAuth: AngularFireAuth,
               public loadctrl: LoadingController,
               public modal: ModalController,
               public actionCtrl: ActionSheetController,
-              public platform: Platform) {
+              public platform: Platform,
+              private afDB: AngularFireDatabase) {
+
+      this.Uid = this.afAuth.auth.currentUser.uid;
+      console.log(this.Uid);
   
       let loader = this.loadctrl.create({
       content: "Espere porfavor...",
        });
       loader.present();
 
-      this.usua.get_usuarios().subscribe(data =>{
+      this.afDB.object('usuarios/'+this.Uid).valueChanges().subscribe(data =>{
       this.usuario = data;
+      console.log(this.usuario);
+      console.log(data);
       loader.dismiss();
     });
   }

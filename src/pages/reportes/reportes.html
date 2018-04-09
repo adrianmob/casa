@@ -11,7 +11,7 @@
 
     <div class="contenedor">
       
-        <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
+        <img class="logo" src="assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
 
     </div>
 
@@ -22,10 +22,9 @@
       monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic"
       dayNames="domingo, Lunes, Martes, Miercoles, Juves, Viernes, Sabado, Domingo"
       dayShortNames="Dom, Lum, Mar, Mie, Jue, Vie, Sab"
-      id="fechaInfo"></ion-datetime>
+      id="fechaInfo"
+      (ionChange) = "mostrarBitacora()"></ion-datetime>
     </ion-item>
-
-    <button ion-button block  (click)="mostrarBitacora()">Buscar</button> 
 
 
     <ion-card  *ngFor="let reporte of reporte" (click)="opciones(reporte)">

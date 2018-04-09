@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 /**
@@ -20,10 +22,15 @@ export class DetalleUsuarioPage {
   
 
   public usuario = {};
+  Uid : string;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public usua: UsuarioProvider) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public usua: UsuarioProvider,
+              private afDB: AngularFireDatabase,
+              private afAuth:AngularFireAuth) {
+
+    this.Uid = this.afAuth.auth.currentUser.uid;
   
-    this.usua.get_usuarios().subscribe(data =>{
+    this.afDB.object('usuarios/'+this.Uid).valueChanges().subscribe(data =>{
       this.usuario = data;
       console.log(this.usuario);
     });
