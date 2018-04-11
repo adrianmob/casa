@@ -67,7 +67,7 @@ export class UsuarioProvider {
       targetHeight: 720,
       saveToPhotoAlbum: true
     }).then(foto => {
-            let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid);
+            let fotoref = firebase.storage().ref('usuarios/fotos_perfil/'+this.Uid+'/perfil');
             fotoref.putString(foto, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
               firebase.database().ref('usuarios/'+this.Uid).update({url: foto_guardad.downloadURL});
             });
