@@ -3,7 +3,6 @@ import { Platform, NavController, LoadingController, ModalController, ActionShee
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DetalleUsuarioPage } from '../detalle-usuario/detalle-usuario';
-import firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 

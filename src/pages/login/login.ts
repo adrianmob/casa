@@ -26,14 +26,10 @@ export class LoginPage {
 
   }
 
- async login(user : User){
+ login(user : User){
   try { 
-  const result = await this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
-  if(result){
-    console.log(result);
-
-
-  }
+  this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
+  
   }
   catch(e){
     console.error(e);

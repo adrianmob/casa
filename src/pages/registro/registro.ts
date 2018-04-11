@@ -21,10 +21,10 @@ export class RegistroPage {
               private alertCtrl: AlertController) {
   }
 
-  async registrar(user : User){
+  registrar(user : User){
     try{
       user.url = "https://firebasestorage.googleapis.com/v0/b/casasegura-e1196.appspot.com/o/usuarios%2Ffotos_perfil%2Fperfil.png?alt=media&token=42ce7d98-c4ea-4007-9e2a-d6328f08ae95";
-    const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.correo, user.contrasena).then(()=>{
+    this.afAuth.auth.createUserWithEmailAndPassword(user.correo, user.contrasena).then(()=>{
       this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena)}).then(()=>{
         this.afAuth.authState.subscribe(auth => { 
           this.afDatabase.database.ref('usuarios').child(auth.uid).set(user).then(()=>{

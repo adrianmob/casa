@@ -55,6 +55,8 @@ export class UsuarioProvider {
 
 
   camera(){
+    this.Uid = this.afAuth.auth.currentUser.uid;
+    this.id = Date.now();
     this.camara.getPicture({
       quality : 100,
       destinationType : this.camara.DestinationType.DATA_URL,
@@ -77,6 +79,8 @@ export class UsuarioProvider {
     
 
 imagen(){
+    this.Uid = this.afAuth.auth.currentUser.uid;
+    this.id = Date.now();
     this.camara.getPicture({
       quality : 100,
       destinationType : this.camara.DestinationType.DATA_URL,
