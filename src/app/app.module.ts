@@ -18,6 +18,8 @@ import { DetalleReportePage } from '../pages/detalle-reporte/detalle-reporte';
 import { LoginPage } from '../pages/login/login';
 import { RegistroPage} from '../pages/registro/registro';
 import { DetalleTrabajadorPage } from '../pages/detalle-trabajador/detalle-trabajador';
+import { TrabajadoresPage } from '../pages/trabajadores/trabajadores';
+import { EditarTrabajadorPage } from '../pages/editar-trabajador/editar-trabajador';
 
 
 
@@ -51,7 +53,9 @@ export const firebaseConfig = {
     DetalleReportePage,
     LoginPage,
     RegistroPage,
-    DetalleTrabajadorPage
+    DetalleTrabajadorPage,
+    TrabajadoresPage,
+    EditarTrabajadorPage
 
   ],
   imports: [
@@ -75,7 +79,9 @@ export const firebaseConfig = {
     DetalleReportePage,
     LoginPage,
     RegistroPage,
-    DetalleTrabajadorPage
+    DetalleTrabajadorPage,
+    TrabajadoresPage,
+    EditarTrabajadorPage
   ],
   providers: [
     StatusBar,

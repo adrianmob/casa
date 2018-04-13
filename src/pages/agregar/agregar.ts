@@ -42,6 +42,9 @@ export class AgregarPage {
     this.agregar.curp="";
     this.agregar.rfc="";
     this.agregar.cedula="";
+    this.agregar.correo="";
+    this.agregar.pass="MTIzNDU=";
+    this.agregar.telefono="";
     this.tipo_qr = this.navParams.get('titulo');
     this.Uid = this.afAuth.auth.currentUser.uid;
   }
@@ -55,7 +58,7 @@ export class AgregarPage {
   }
 
   habilitarBoton() {
-    if (this.imagen !="" && this.agregar.name != "" && this.agregar.curp != "" && this.agregar.rfc !="" && this.agregar.cedula !="") {
+    if (this.imagen !="" && this.agregar.telefono!="" && this.agregar.correo != "" && this.agregar.name != "" && this.agregar.curp != "" && this.agregar.rfc !="" && this.agregar.cedula !="") {
       this.boton = false;
     }
     else {
@@ -71,9 +74,7 @@ export class AgregarPage {
       spinner: "crescent"
     });
     loader.present();
-
     this.agregar.tipo = this.tipo_qr;
-    console.log(this.agregar.rfc);
     let fotoref = firebase.storage().ref('usuarios/trabajadores/'+this.Uid+'/'+this.agregar.curp);
         fotoref.putString(this.imagen, 'base64', {contentType: 'image/jpg'}).then(foto_guardad => {
           this.agregar.url = foto_guardad.downloadURL;

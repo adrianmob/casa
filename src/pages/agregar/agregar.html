@@ -39,6 +39,16 @@
           </ion-item>
 
           <ion-item>
+            <ion-label stacked>Correo</ion-label>
+            <ion-input [(ngModel)]="agregar.correo" name="correo" type="email" (keyup)="habilitarBoton()"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked>Telefono</ion-label>
+            <ion-input id="telefono"  [(ngModel)]= "agregar.telefono" name="telefono" type="number" (keyup)="habilitarBoton()"></ion-input>
+          </ion-item>
+
+          <ion-item>
             <ion-label stacked>Curp</ion-label>
             <ion-input id="curp"  [(ngModel)]= "agregar.curp" name="curp" type="text" (keyup)="mayus('curp')" (keyup)="habilitarBoton()"></ion-input>
           </ion-item>
@@ -52,6 +62,12 @@
             <ion-label stacked>Cedula</ion-label>
             <ion-input [(ngModel)]="agregar.cedula" name="cedula" type="number" (keyup)="habilitarBoton()"></ion-input>
           </ion-item>
+
+         
+            <ion-input [(ngModel)]="agregar.pass" name="password" type="text" hidden = "true"></ion-input>
+          
+
+          
 
         </ion-col>
 

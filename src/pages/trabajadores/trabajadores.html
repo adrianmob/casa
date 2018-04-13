@@ -1,0 +1,91 @@
+<!--
+  Generated template for the TrabajadoresPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="categoria" color="nav" >
+      <ion-segment-button value="trabajador">
+        Trabajador
+      </ion-segment-button>
+      <ion-segment-button value="contacto">
+        Contacto
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [ngSwitch]="categoria" >
+
+
+  <div class="contenedor">
+
+      <img class="logo" src="../../assets/imgs/axesslogo.png" alt="" width="200px" height="80px">
+
+  </div>
+
+  <div  *ngSwitchCase="'trabajador'" >
+
+  <ion-card>
+    <ngx-qrcode qrc-element-type="img" id="{{trab.idTra}}" qrc-value='{"clave": "{{ trab.key }}" , "nombre": "{{ trab.name }}" , "correo": "{{ trab.correo }}" , "telefono": "{{trab.telefono}}", "curp" : "{{trab.curp}}", "rfc" : "{{trab.rfc}}", "cedula" : "{{trab.cedula}}", "url": "{{ trab.url }}", "tipo": "{{ trab.tipo }}" }'></ngx-qrcode>
+    <ion-card-content>
+        <ion-card-title class="card" >
+            <ion-icon class="icono" name="contact"></ion-icon>
+              <span class="info">{{ trab.name }}</span>
+          </ion-card-title>
+          <ion-card-title class="card">
+            <ion-icon class="icono" name="mail"></ion-icon>
+               <span class="info">{{ trab.correo }}</span>
+           </ion-card-title>
+           <ion-card-title class="card">
+            <ion-icon class="icono" name="finger-print"></ion-icon>
+              <span class="info">{{ trab.curp }}</span>
+          </ion-card-title>
+           <ion-card-title class="card">
+            <i class="fas fa-id-badge icono"></i>
+              <span class="info">{{ trab.rfc }}</span>
+          </ion-card-title>
+             <ion-card-title class="card">
+           <i class="far fa-hospital icono"></i>
+              <span class="info">{{ trab.cedula }}</span>
+          </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+
+    </div>
+
+    <div  *ngSwitchCase="'contacto'" >
+        <ion-card>
+            <ngx-qrcode qrc-element-type="img" id="{{trab.idTra}}" qrc-value='BEGIN:VCARD
+N:{{ trab.name }} 
+EMAIL:{{ trab.correo }} 
+TEL:{{trab.telefono}} 
+END:VCARD'></ngx-qrcode>
+            <ion-card-content>
+                <ion-card-title class="card" >
+                    <ion-icon class="icono" name="contact"></ion-icon>
+                      <span class="info">{{ trab.name }}</span>
+                  </ion-card-title>
+                  <ion-card-title class="card">
+                    <ion-icon class="icono" name="mail"></ion-icon>
+                       <span class="info">{{ trab.correo }}</span>
+                   </ion-card-title>
+                   <ion-card-title class="card">
+                      <i class="icono fas fa-mobile"></i>
+                       <span class="info">{{ trab.telefono }}</span>
+                   </ion-card-title>
+                   
+              </ion-card-content>
+            </ion-card>
+
+      </div>
+
+      <ion-fab right bottom>
+          <button ion-fab   (click)="ir_editar_trabajador()"><i class="fas fa-edit"></i></button>
+          </ion-fab>
+
+</ion-content>

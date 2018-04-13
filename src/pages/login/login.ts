@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController  
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../../modelos/user';
 import { RegistroPage } from '../registro/registro';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { TrabajadoresPage } from '../trabajadores/trabajadores';
+import { Observable } from 'rxjs/Observable';
+
 
 
 @IonicPage()
@@ -13,10 +17,17 @@ import { RegistroPage } from '../registro/registro';
 export class LoginPage {
 
   user = {} as User;
+  listaTrab: Observable<any[]>;
+  trab = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private afAuth : AngularFireAuth,
-    public alertCtrl : AlertController,
-    public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  
+              private afAuth : AngularFireAuth,
+              private afDB: AngularFireDatabase,
+              public alertCtrl : AlertController,
+              public toastCtrl: ToastController) {
+              
+              this.user.correo = "";
+              this.user.contrasena = "";
   }
 
   
@@ -26,15 +37,69 @@ export class LoginPage {
 
   }
 
- login(user : User){
+ async login(user : User){
   try { 
-  this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
+  const result = await this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
+  
   
   }
   catch(e){
-    console.error(e);
-    console.log(e.message)
-    this.presentAlert(e.code, e.message);
+
+    var trabaja = false;
+    this.listaTrab = this.afDB.list('trabajadores').snapshotChanges().map(changes => {
+      return changes.map(c =>  ({ key: c.payload.key, ...c.payload.val() }));
+    });
+
+    
+    this.listaTrab.subscribe(respuesta =>{
+      this.trab = respuesta;
+    
+      for (let index = 0; index < this.trab.length; index++) {
+        
+        for (const key in this.trab[index]) {
+          if(user.correo == this.trab[index][key].correo){
+            if(user.contrasena == atob(this.trab[index][key].pass)){
+            
+
+                trabaja = true;
+  
+                var trabajador = {
+                  idEm: this.trab[index].key,
+                  idTra: key,
+                  cedula: this.trab[index][key].cedula,
+                  correo: this.trab[index][key].correo,
+                  curp: this.trab[index][key].curp,
+                  name: this.trab[index][key].name,
+                  rfc: this.trab[index][key].rfc,
+                  tipo: this.trab[index][key].tipo,
+                  url: this.trab[index][key].url,
+                  telefono: this.trab[index][key].telefono
+  
+                }
+             
+                this.navCtrl.setRoot(TrabajadoresPage,{
+                  trabajador : trabajador});
+
+                  break;
+                  
+              
+            }
+
+          }
+            
+          }
+        
+        
+      }
+      if(trabaja == false){
+      this.presentAlert(e.code, e.message);
+
+      }
+    });
+
+    
+    
+    
   }
  }
 

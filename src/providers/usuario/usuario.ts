@@ -56,12 +56,11 @@ export class UsuarioProvider {
 
   camera(){
     this.Uid = this.afAuth.auth.currentUser.uid;
-    this.id = Date.now();
     this.camara.getPicture({
       quality : 100,
       destinationType : this.camara.DestinationType.DATA_URL,
       sourceType : this.camara.PictureSourceType.CAMERA,
-      allowEdit : true,
+      allowEdit : false,
       encodingType: this.camara.EncodingType.JPEG,
       targetWidth: 720,
       targetHeight: 720,
@@ -80,12 +79,11 @@ export class UsuarioProvider {
 
 imagen(){
     this.Uid = this.afAuth.auth.currentUser.uid;
-    this.id = Date.now();
     this.camara.getPicture({
       quality : 100,
       destinationType : this.camara.DestinationType.DATA_URL,
       sourceType : this.camara.PictureSourceType.PHOTOLIBRARY,
-      allowEdit : true,
+      allowEdit : false,
       encodingType: this.camara.EncodingType.JPEG,
       targetWidth: 720,
       targetHeight: 720,
@@ -108,7 +106,7 @@ imagen(){
       quality : 100,
       destinationType : this.camara.DestinationType.DATA_URL,
       sourceType : this.camara.PictureSourceType.CAMERA,
-      allowEdit : true,
+      allowEdit : false,
       encodingType: this.camara.EncodingType.JPEG,
       targetWidth: 1280,
       targetHeight: 720,

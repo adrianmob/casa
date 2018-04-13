@@ -33,8 +33,6 @@ export class UsuariosPage {
 
       this.afDB.object('usuarios/'+this.Uid).valueChanges().subscribe(data =>{
       this.usuario = data;
-      console.log(this.usuario);
-      console.log(data);
       loader.dismiss();
     });
   }
